@@ -77,3 +77,23 @@ describe("clicking to see details", () => {
     );
   });
 });
+
+describe("Filtering by name", () => {
+  test("user can filter by name", async () => {
+    // when the page loads
+    render(<App />);
+    const items = await screen.findAllByRole("listitem");
+    // then the BBB launch is showing
+    expect((items[0]?.firstChild as HTMLElement).innerHTML).toBe(
+      firstLaunchReturnedHtml + showDetailsButtonHtml
+    );
+    // when the user types in the input
+    const filterInput = await screen.findByRole("textbox");
+    fireEvent.change(filterInput, { target: { value: "AAA" } });
+    // then the BBB launch is no longer shown
+    const itemsAfterFiltering = await screen.findAllByRole("listitem");
+    expect((itemsAfterFiltering[0]?.firstChild as HTMLElement).innerHTML).toBe(
+      secondLaunchReturnedHtml + showDetailsButtonHtml
+    );
+  });
+});

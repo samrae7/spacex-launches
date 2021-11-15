@@ -2,6 +2,7 @@ import React, { ChangeEvent, useEffect, useState } from "react";
 import "./App.css";
 import fetchLaunches from "./client/fetchLaunches";
 import ListItem from "./components/list-item/ListItem";
+import NameFilter from "./components/name-filter/NameFilter";
 
 export type Launch = {
   id: string;
@@ -38,6 +39,17 @@ function App() {
     setItems(sortedItems);
   };
 
+  function filterItems(event: ChangeEvent<HTMLInputElement>) {
+    const userInput = event.target.value;
+    let filteredItems;
+    if (userInput.length < 2) {
+      return;
+    } else {
+      filteredItems = items.filter((item) => item.name.includes(userInput));
+      setItems(filteredItems);
+    }
+  }
+
   return (
     <div className="App">
       <main>
@@ -46,6 +58,7 @@ function App() {
           <option value="launchname">Name</option>
           <option value="launchdate">Date</option>
         </select>
+        <NameFilter handleUserInput={filterItems} />
         <ul>
           {items.map((item, i) => (
             <li key={item.id}>
