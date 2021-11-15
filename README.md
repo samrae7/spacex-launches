@@ -1,4 +1,23 @@
-# Getting Started with Create React App
+# SpaceX App
+
+Features:
+
+- Lists last 50 SpaceX launches
+- User can sort by Name and Date
+- User can click to see details for each launch (if available)
+
+Not implemented so far (due to running out of time)
+
+- Search by name
+- Styling
+- Accessibility
+
+## Prerequisites for running the app:
+
+- Ensure node and npm are installed
+- Clone, cd into project directory and run `npm install`
+- To run tests, run `npm test`.
+- To launch app, run `npm start`
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

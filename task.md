@@ -1,4 +1,4 @@
-#S paceX App
+# SpaceX App
 
 This test is to build an application that lists information about SpaceX rocket launches using
 their free open SpaceX api:   
