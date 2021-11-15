@@ -4,11 +4,11 @@ Features:
 
 - Lists last 50 SpaceX launches
 - User can sort by Name and Date
-- User can click to see details for each launch (if available)
+- User can click to see details for each launch (if available). The instructions say details for the rocket but I've interpreted it to mean displaying the launch details rather than fetching details from the rockets endpoint)
+- User can filter by name ( instructions say search by name but I have interpreted this as filtering the list by name)
 
 Not implemented so far (due to running out of time)
 
-- Search by name
 - Styling
 - Accessibility
 
