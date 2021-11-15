@@ -13,6 +13,7 @@ export type Launch = {
 
 function App() {
   const [items, setItems] = useState([] as Launch[]);
+  const [filterInput, setFilterInput] = useState("");
 
   useEffect(() => {
     const getItems = async () => {
@@ -41,13 +42,14 @@ function App() {
 
   function filterItems(event: ChangeEvent<HTMLInputElement>) {
     const userInput = event.target.value;
-    let filteredItems;
     if (userInput.length < 2) {
-      return;
-    } else {
-      filteredItems = items.filter((item) => item.name.includes(userInput));
-      setItems(filteredItems);
+      setItems(items);
     }
+    setFilterInput(userInput.toLowerCase());
+  }
+
+  function nameMatchesUserInput(launch: Launch) {
+    return launch.name.toLowerCase().includes(filterInput.toLowerCase());
   }
 
   return (
@@ -60,7 +62,7 @@ function App() {
         </select>
         <NameFilter handleUserInput={filterItems} />
         <ul>
-          {items.map((item, i) => (
+          {items.filter(nameMatchesUserInput).map((item, i) => (
             <li key={item.id}>
               <ListItem {...item} />
             </li>

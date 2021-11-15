@@ -96,4 +96,16 @@ describe("Filtering by name", () => {
       secondLaunchReturnedHtml + showDetailsButtonHtml
     );
   });
+
+  test("filtering is case-insensitive", async () => {    // when the page loads
+    // when the user types in the input
+    render(<App />);
+    const filterInput = await screen.findByRole("textbox");
+    fireEvent.change(filterInput, { target: { value: "aaa" } });
+    // then the AAA launch is shown
+    const itemsAfterFiltering = await screen.findAllByRole("listitem");
+    expect((itemsAfterFiltering[0]?.firstChild as HTMLElement).innerHTML).toBe(
+      secondLaunchReturnedHtml + showDetailsButtonHtml
+    );
+  });
 });
