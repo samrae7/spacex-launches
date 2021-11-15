@@ -5,7 +5,7 @@ export default ({ date_utc, name, details }: Launch) => {
   const [showDetails, setShowDetails] = useState(false);
   return (
     <div>
-      {date_utc}
+      {new Date(date_utc).toLocaleString("en-GB")}
       <br />
       {name}
       <button onClick={() => setShowDetails(!showDetails)}>
