@@ -1,12 +1,14 @@
-import React, {
-  ChangeEvent,
-  useEffect,
-  useState,
-} from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import "./App.css";
 import fetchLaunches from "./client/fetchLaunches";
+import ListItem from "./components/list-item/ListItem";
 
-export type Launch = { name: string; date_utc: string; details: string };
+export type Launch = {
+  id: string;
+  name: string;
+  date_utc: string;
+  details: string;
+};
 
 function App() {
   const [items, setItems] = useState([] as Launch[]);
@@ -35,7 +37,7 @@ function App() {
     }
     setItems(sortedItems);
   };
-  
+
   return (
     <div className="App">
       <main>
@@ -46,12 +48,8 @@ function App() {
         </select>
         <ul>
           {items.map((item, i) => (
-            <li key={"item" + i}>
-              {item.date_utc}
-              <br />
-              {item.name}
-              <br />
-              {item.details}
+            <li key={item.id}>
+              <ListItem {...item} />
             </li>
           ))}
         </ul>
